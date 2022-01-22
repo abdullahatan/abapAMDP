@@ -93,9 +93,11 @@ ENDCLASS.
 
 
 CLASS zaatan_amdp_ex01 IMPLEMENTATION.
-  METHOD get_flight_dat BY DATABASE PROCEDURE FOR HDB LANGUAGE SQLSCRIPT
-                         OPTIONS READ-ONLY
-                         USING scarr spfli sflight.
+  METHOD get_flight_dat BY DATABASE PROCEDURE FOR HDB 
+                        LANGUAGE SQLSCRIPT
+                        OPTIONS READ-ONLY
+                        USING scarr spfli sflight.
+                        
     ev_basedat = SELECT scarr.carrid,
                         scarr.carrname,
                         scarr.currcode,
@@ -117,6 +119,7 @@ CLASS zaatan_amdp_ex01 IMPLEMENTATION.
                                           AND spfli.connid = sflight.connid
                           WHERE sflight.carrid = :im_carrid
                             AND sflight.fldate = :im_fldate;
+                            
   ENDMETHOD.
 ENDCLASS.
 ```
