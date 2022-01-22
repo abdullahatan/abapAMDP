@@ -24,10 +24,10 @@ ABAP ortamında veritabanı prosedürü yazmak için kullanılır. Bir AMDP sın
 
 ##### Uygulama Kısıtlamaları;
 - DDL sözdizimini kullanamazsınız.
-- AMDP yöntemi boş olamaz.
-- Yapıcı bir AMDP yöntemi olarak uygulanamaz.
+- AMDP methodunun içi boş bırakılamaz.
+- Constructor(Yapıcı) bir AMDP methodu olarak kullanılamaz.
 - Select-option parametreleri ile ABAP programında cl_shdb_seltab=>combine_seltabs metodunu kullanarak string değerine dönüştürmeli AMDP methodu içinde filtrelemek için APPLY_FILTER ifadesi ile filitrelemeler kullananılabilir.
-- AMDP ile MSEG gibi tabloları kullanamıyoruz. Bunun yerine MATDOC tablosunu veya proxy nesnesini (NSDM_V_MSEG) kullanabiliriz.
+- AMDP ile MSEG, BSEG gibi Pool Table-lar kullanılamaz. Bunun yerine MATDOC, ACDOCA gibi tablolar veya proxy nesneleri (NSDM_V_MSEG) kullanılmalıdır.
 
 ### AMDP Kullanımı
 ```abap
