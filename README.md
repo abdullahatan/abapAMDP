@@ -125,11 +125,11 @@ CLASS zaatan_amdp_ex01 IMPLEMENTATION.
 ENDCLASS.
 ```
 
-##### BY DATABASE PROCEDURE: Bir Veritabanı Prosedürü uygulamak için bir AMDP prosedür uygulamasını tanımlamak için kullanılır.
-##### FOR HDB: HANA veritabanı için belirtmek için kullanılır.
-##### LANGUAGE SQLSCRIPT: AMDP'nin uygulandığı veritabanına özgü dili tanımlamak için kullanılır.
-##### OPTIONS READ-ONLY: Veritabanı prosedüründe veritabanı tablolarında yalnızca okumaya izin verildiğini tanımlamak için kullanılır.( Delete ve Insert komutları kullanılacaksa bu komut kullanılmaz).
-##### USING: Ekleme, güncelleme, silme işlemlerini yapabileceğimiz tabloları belirtmek için kullanılır.
+- ***BY DATABASE PROCEDURE:*** Bir Veritabanı Prosedürü uygulamak için bir AMDP prosedür uygulamasını tanımlamak için kullanılır.
+- ***FOR HDB:*** HANA veritabanı için belirtmek için kullanılır.
+- ***LANGUAGE SQLSCRIPT:*** AMDP'nin uygulandığı veritabanına özgü dili tanımlamak için kullanılır.
+- ***OPTIONS READ-ONLY:*** Veritabanı prosedüründe veritabanı tablolarında yalnızca okumaya izin verildiğini tanımlamak için kullanılır.( Delete ve Insert komutları -kullanılacaksa bu komut kullanılmaz).
+- ***USING:*** Ekleme, güncelleme, silme işlemlerini yapabileceğimiz tabloları belirtmek için kullanılır.
 
 ### Program İçerisinde Kullanımı
 
@@ -182,5 +182,5 @@ START-OF-SELECTION.
      im_basedat = app->run_amdp_dat( ) ).
 ```
 #### Çıktı;
-![image](https://user-images.githubusercontent.com/26427511/150648681-630bc352-d6d4-49f1-be6d-6805059b1b2a.png)
+![image](https://user-images.githubusercontent.com/26427511/150653823-20b902c0-fadf-4221-bb82-9f6bde94336a.png)
 
