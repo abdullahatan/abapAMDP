@@ -93,7 +93,8 @@ ENDCLASS.
 
 
 CLASS zaatan_amdp_ex01 IMPLEMENTATION.
-  METHOD get_flight_dat BY DATABASE PROCEDURE FOR HDB 
+  METHOD get_flight_dat BY DATABASE PROCEDURE 
+                        FOR HDB 
                         LANGUAGE SQLSCRIPT
                         OPTIONS READ-ONLY
                         USING scarr spfli sflight.
@@ -123,6 +124,12 @@ CLASS zaatan_amdp_ex01 IMPLEMENTATION.
   ENDMETHOD.
 ENDCLASS.
 ```
+
+##### BY DATABASE PROCEDURE: Bir Veritabanı Prosedürü uygulamak için bir AMDP prosedür uygulamasını tanımlamak için kullanılır.
+##### FOR HDB: HANA veritabanı için belirtmek için kullanılır.
+##### LANGUAGE SQLSCRIPT: AMDP'nin uygulandığı veritabanına özgü dili tanımlamak için kullanılır.
+##### OPTIONS READ-ONLY: Veritabanı prosedüründe veritabanı tablolarında yalnızca okumaya izin verildiğini tanımlamak için kullanılır.( Delete ve Insert komutları kullanılacaksa bu komut kullanılmaz).
+##### USING: Ekleme, güncelleme, silme işlemlerini yapabileceğimiz tabloları belirtmek için kullanılır.
 
 ### Program İçerisinde Kullanımı
 
