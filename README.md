@@ -115,8 +115,10 @@ CLASS zaatan_amdp_ex01 IMPLEMENTATION.
                         sflight.seatsmax,
                         sflight.seatsocc
                         FROM sflight
-                          INNER JOIN scarr ON scarr.carrid = sflight.carrid
-                          INNER JOIN spfli ON spfli.carrid = sflight.carrid
+                          INNER JOIN scarr ON scarr.mandt  = sflight.mandt
+                                          AND scarr.carrid = sflight.carrid
+                          INNER JOIN spfli ON spfli.mandt  = sflight.mandt
+                                          AND spfli.carrid = sflight.carrid
                                           AND spfli.connid = sflight.connid
                           WHERE sflight.carrid = :im_carrid
                             AND sflight.fldate = :im_fldate;
