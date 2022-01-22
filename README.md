@@ -120,6 +120,55 @@ CLASS zaatan_amdp_ex01 IMPLEMENTATION.
   ENDMETHOD.
 ENDCLASS.
 ```
+### Program İçinde Çağrılması:
+```abap
+*&---------------------------------------------------------------------*
+*& Program ZAATAN_AMDP
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+PROGRAM zaatan_amdp.
 
+CLASS amdp_demo DEFINITION.
+  PUBLIC SECTION.
+    METHODS:
+      run_amdp_dat
+        RETURNING
+          VALUE(rt_basedat) TYPE zaatan_amdp_ex01=>tt_basedat,
+      show_cte_dat
+        IMPORTING
+          !im_basedat TYPE zaatan_amdp_ex01=>tt_basedat.
+ENDCLASS.
+CLASS amdp_demo IMPLEMENTATION.
+  METHOD run_amdp_dat.
+    DATA: _carrid TYPE sflights-carrid VALUE 'LH',
+          _fldate TYPE sflights-fldate VALUE '20210107'.
 
+    cl_demo_input=>request( CHANGING field = _carrid ).
+    cl_demo_input=>request( CHANGING field = _fldate ).
+
+    zaatan_amdp_ex01=>get_flıght_dat(
+        EXPORTING
+            im_carrid = _carrid
+            im_fldate = _fldate
+        IMPORTING
+             ev_basedat = rt_basedat ).
+
+  ENDMETHOD.
+  METHOD show_cte_dat.
+    IF NOT im_basedat[] IS INITIAL.
+      cl_demo_output=>display( im_basedat ).
+    ENDIF.
+  ENDMETHOD.
+ENDCLASS.
+
+START-OF-SELECTION.
+
+  DATA(app) = NEW amdp_demo( ) .
+  app->show_cte_dat(
+    EXPORTING
+     im_basedat = app->run_amdp_dat( ) ).
+```
+#### Çıktı;
+![image](https://user-images.githubusercontent.com/26427511/150648681-630bc352-d6d4-49f1-be6d-6805059b1b2a.png)
 
