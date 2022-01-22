@@ -35,23 +35,91 @@ METHOD <meth> BY DATABASE PROCEDURE
               FOR <db>
               LANGUAGE <db_lang>
               [OPTIONS <db_options>]
-    [USING <db_entities>].
+              [USING <db_entities>].
 
 < Insert SQLScript code here >
 
 ENDMETHOD.
 ```
 
-### AMDP Oluşturma Adımları
+### AMDP Method Oluşturma Adımları
 
 Geliştirmelerimizi ADT üzerinden oluşturuyoruz.
-
 
 ![image](https://user-images.githubusercontent.com/26427511/150639340-e0733e39-3ad6-4cc0-804e-a0ef6f3bb4e1.png)
 
 ![image](https://user-images.githubusercontent.com/26427511/150639645-7d3903b3-aba9-4806-af9d-ef9c828e02c0.png)
 
+```abap
+CLASS zaatan_amdp_ex01 DEFINITION
+  PUBLIC
+  FINAL
+  CREATE PUBLIC .
 
+  PUBLIC SECTION.
+
+    INTERFACES if_amdp_marker_hdb.
+
+    TYPES: BEGIN OF ty_basedat,
+             carrid    TYPE spfli-carrid,
+             carrname  TYPE scarr-carrname,
+             currcode  TYPE scarr-currcode,
+             connid    TYPE spfli-connid,
+             countryfr TYPE spfli-countryfr,
+             cityfrom  TYPE spfli-cityfrom,
+             airpfrom  TYPE spfli-airpfrom,
+             countryto TYPE spfli-countryto,
+             cityto    TYPE spfli-cityto,
+             airpto    TYPE spfli-airpto,
+             price     TYPE sflight-price,
+             currency  TYPE sflight-currency,
+             planetype TYPE sflight-planetype,
+             seatsmax  TYPE sflight-seatsmax,
+             seatsocc  TYPE sflight-seatsocc,
+           END OF ty_basedat,
+           tt_basedat TYPE STANDARD TABLE OF ty_basedat WITH DEFAULT KEY.
+
+    CLASS-METHODS:
+      get_flight_dat
+        IMPORTING
+          VALUE(im_carrid)  TYPE spfli-carrid
+          VALUE(im_fldate)  TYPE sflight-fldate
+        EXPORTING
+          VALUE(ev_basedat) TYPE tt_basedat.
+
+  PROTECTED SECTION.
+  PRIVATE SECTION.
+ENDCLASS.
+
+
+CLASS zaatan_amdp_ex01 IMPLEMENTATION.
+  METHOD get_flight_dat BY DATABASE PROCEDURE FOR HDB LANGUAGE SQLSCRIPT
+                         OPTIONS READ-ONLY
+                         USING scarr spfli sflight.
+    ev_basedat = SELECT scarr.carrid,
+                        scarr.carrname,
+                        scarr.currcode,
+                        spfli.connid,
+                        spfli.countryfr,
+                        spfli.cityfrom,
+                        spfli.airpfrom,
+                        spfli.countryto,
+                        spfli.cityto,
+                        spfli.airpto,
+                        sflight.price,
+                        sflight.currency,
+                        sflight.planetype,
+                        sflight.seatsmax,
+                        sflight.seatsocc
+                        FROM sflight
+                          INNER JOIN scarr ON scarr.carrid = sflight.carrid
+                          INNER JOIN spfli ON spfli.carrid = sflight.carrid
+                                          AND spfli.connid = sflight.connid
+                          WHERE sflight.carrid = :im_carrid
+                            AND sflight.fldate = :im_fldate;
+  ENDMETHOD.
+ENDCLASS.
+```
 
 
 
