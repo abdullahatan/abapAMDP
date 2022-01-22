@@ -123,7 +123,9 @@ CLASS zaatan_amdp_ex01 IMPLEMENTATION.
   ENDMETHOD.
 ENDCLASS.
 ```
-### Program İçinde Çağrılması:
+
+### Program İçerisinde Kullanımı
+
 ```abap
 *&---------------------------------------------------------------------*
 *& Program ZAATAN_AMDP
