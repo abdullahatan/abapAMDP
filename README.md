@@ -6,7 +6,7 @@ ABAP ortamında veritabanı prosedürü yazmak için kullanılır. Bir AMDP sın
   Çoğu yeni geliştirme nesnesi gibi, AMDP sınıfları da yalnızca ADT'den (Eclipse) üzerinden düzenlenebilir. 
   
 ### AMDP Genel Özellikleri
-  Bir AMDP methotları, statik methotlar veya instance olarak tanımladığımız methodlar olabilir. AMDP sınıflarının sıradan methodlardan hiçbir farkı yoktur. Bunun bir AMDP yöntemi olduğunu ancak kaynak koduna bakarak anlayabilirsiniz. 
+  AMDP methotları, statik methotlar veya instance olarak tanımladığımız methodlar olabilir. AMDP sınıflarının sıradan methodlardan hiçbir farkı yoktur. Bunun bir AMDP yöntemi olduğunu ancak kaynak koduna bakarak anlayabilirsiniz. 
 
 #### AMDP yöntemleri bazı kısıtlamalara sahiptir;
 
